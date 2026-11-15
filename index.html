@@ -156,7 +156,7 @@
 <h1 class="section-title reveal"><img src="assets/ic5.png" alt="" class="title-icon">Contáctame</h1>
 <div class="ore-panel contact-card reveal">
 <h3>Enviar un Gmail</h3>
-<form action="https://formsubmit.co/caelustry@@gmail.com" method="POST" class="contact-form">
+<form action="https://formsubmit.co/caelustry@gmail.com" method="POST" class="contact-form">
 <input type="email" name="email" placeholder="Tu correo electrónico" required>
 <textarea name="message" rows="4" placeholder="Escribe aquí lo que quieras pedir o consultar..." required></textarea>
 <button type="submit" class="ore-btn">Enviar</button>
@@ -168,11 +168,11 @@
 <div class="ore-panel modal-card">
 <div class="modal-header"><h2>Realizar Solicitud</h2><button class="close-btn" onclick="closeModal('requestModal')">&times;</button></div>
 <div class="ore-inset plan-info-badge"><span class="name" id="modalPlanName">Plan</span><span class="price" id="modalPlanPrice">Precio</span></div>
-<form action="https://formsubmit.co/ajax/caelustry@@gmail.com" method="POST" class="modal-form" onsubmit="handleFormSubmit(event)" id="requestForm">
+<form action="https://formsubmit.co/ajax/caelustry@gmail.com" method="POST" class="modal-form" onsubmit="handleFormSubmit(event)" id="requestForm">
 <input type="hidden" name="_subject" id="emailSubject" value="Nueva Solicitud">
 <input type="hidden" name="Plan Seleccionado" id="hiddenPlanName">
 <input type="hidden" name="Precio / Tipo" id="hiddenPlanPrice">
-<div><label for="userEmail">Tu Gmail</label><input type="email" id="userEmail" name="email" placeholder="caelustry@@gmail.com" required></div>
+<div><label for="userEmail">Tu Gmail</label><input type="email" id="userEmail" name="email" placeholder="caelustry@gmail.com" required></div>
 <div><label for="userDescription">Descripción de lo que vas a solicitar</label><textarea id="userDescription" name="mensaje" placeholder="Escribe aquí los detalles de tu proyecto o propuesta..." required></textarea></div>
 <p class="error-text" id="formError">Hubo un problema al enviar tu solicitud. Intenta de nuevo en unos segundos.</p>
 <button type="submit" class="ore-btn block" id="submitBtn">Enviar Solicitud</button>
