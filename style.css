@@ -90,7 +90,7 @@ transition:transform .12s ease,filter .12s ease;
 
 /* top navigation (Ore UI tab bar) */
 .topnav{position:sticky;top:0;z-index:50;background:var(--panel-dark);border-bottom:2px solid var(--edge);box-shadow:0 4px 0 rgba(0,0,0,.3)}
-.topnav-inner{max-width:1180px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.topnav-inner{max-width:1180px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:8px}
 .brand{display:flex;align-items:center;gap:10px;color:var(--text);text-decoration:none;font-weight:700;font-size:19px;margin-right:auto;text-shadow:2px 2px 0 rgba(0,0,0,.55)}
 .brand img{width:32px;height:32px;border:2px solid var(--edge);image-rendering:auto}
 .tab{color:var(--text-dim);text-decoration:none;padding:8px 14px;font-size:16px;background:var(--panel);border:2px solid var(--edge);box-shadow:inset 0 3px 0 var(--panel-hi),inset 0 -3px 0 var(--panel-lo);transition:color .15s,transform .15s}
@@ -220,9 +220,6 @@ body{font-size:16px}
 .commissions-actions{width:100%}
 .commissions-actions .ore-btn{flex:1}
 .username{font-size:28px}
-.tab{padding:7px 10px;font-size:15px}
-.topnav-inner{gap:6px}
-.brand{width:100%;margin-bottom:2px}
 }
 
 /* ---------- team groups ---------- */
@@ -240,3 +237,44 @@ body{font-size:16px}
 .view.active{display:flex;animation:viewin .35s ease}
 @keyframes viewin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.view.active{animation:none}}
+
+/* ---------- nav: tabs, tools, dropdowns ---------- */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.nav-tools{display:flex;gap:8px}
+.tool-btn{padding:7px 14px;font-size:16px}
+.burger{display:none}
+.lang-ic{width:18px;height:18px;flex:0 0 18px}
+.dropdown{position:absolute;z-index:60;top:calc(100% + 6px);padding:12px;display:flex;flex-direction:column;gap:10px;max-height:min(72vh,520px);animation:dd .18s ease}
+.dropdown[hidden]{display:none}
+@keyframes dd{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+.lang-menu{right:16px;width:320px;max-width:calc(100vw - 24px)}
+.lang-search{width:100%;font-family:var(--font);font-size:16px;color:var(--text);outline:none;padding:10px 12px;background:#0d1a23;border:2px solid var(--edge);box-shadow:inset 3px 3px 0 #060d13,inset -3px -3px 0 #243746}
+.lang-search:focus{box-shadow:inset 3px 3px 0 #060d13,inset -3px -3px 0 #243746,0 0 0 2px var(--ice)}
+.lang-list{overflow-y:auto;display:flex;flex-direction:column;gap:6px;padding:2px 6px 6px 2px;overscroll-behavior:contain}
+.lang-opt{font-family:var(--font);font-size:16px;text-align:left;color:#fff;text-shadow:2px 2px 0 rgba(0,0,0,.5);padding:9px 12px;cursor:pointer;background:var(--gray);border:2px solid var(--edge);box-shadow:inset 0 3px 0 var(--gray-hi),inset 0 -3px 0 var(--gray-lo)}
+.lang-opt:hover{filter:brightness(1.15)}
+.lang-opt.active{background:var(--ice-lo);box-shadow:inset 0 3px 0 var(--ice-hi),inset 0 -3px 0 var(--ice-deep)}
+.lang-empty{color:var(--text-dim);text-align:center;padding:10px}
+
+/* hide Google Translate's own UI */
+#google_translate_element{display:none}
+.goog-te-banner-frame,.skiptranslate>iframe,#goog-gt-tt,.goog-te-balloon-frame{display:none!important}
+body{top:0!important}
+.goog-text-highlight{background:none!important;box-shadow:none!important}
+
+@media (max-width:700px){
+.topnav-inner{flex-wrap:nowrap;gap:6px;padding:8px 12px}
+.brand{font-size:17px;min-width:0}
+.brand img{width:28px;height:28px}
+.burger{display:inline-flex}
+#langLabel{display:none}
+.tool-btn{padding:8px 12px}
+.tabs{display:none;position:absolute;z-index:60;left:12px;right:12px;top:calc(100% + 6px);flex-direction:column;flex-wrap:nowrap;justify-content:flex-start;padding:12px;gap:8px;
+background:var(--panel);border:2px solid var(--edge);box-shadow:inset 3px 3px 0 var(--panel-hi),inset -3px -3px 0 var(--panel-lo),0 8px 0 rgba(0,0,0,.25);animation:dd .18s ease}
+.tabs.open{display:flex}
+.tabs .tab{padding:14px 16px;font-size:18px}
+.lang-menu{left:12px;right:12px;width:auto;max-width:none}
+}
+@media (prefers-reduced-motion:reduce){.dropdown,.tabs{animation:none!important}}
+.tool-btn{white-space:nowrap;flex-shrink:0}
+.brand{overflow:hidden;white-space:nowrap}

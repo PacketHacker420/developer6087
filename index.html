@@ -12,7 +12,8 @@
 </head>
 <body>
 <nav class="topnav"><div class="topnav-inner">
-<a class="brand" href="#inicio"><img src="assets/logo.png" alt="GlacierArt">GlacierArt</a>
+<a class="brand notranslate" translate="no" href="#inicio"><img src="assets/logo.png" alt="GlacierArt">GlacierArt</a>
+<div class="tabs" id="tabs">
 <a class="tab" data-view="inicio" href="#inicio">Inicio</a>
 <a class="tab" data-view="team" href="#team">Team</a>
 <a class="tab" data-view="servicios" href="#servicios">Servicios</a>
@@ -20,7 +21,17 @@
 <a class="tab" data-view="planes-web" href="#planes-web">Planes Web</a>
 <a class="tab" data-view="planes-mc" href="#planes-mc">Planes MC</a>
 <a class="tab" data-view="contacto" href="#contacto">Contacto</a>
+</div>
+<div class="nav-tools">
+<button type="button" class="ore-btn gray tool-btn" id="langBtn" aria-haspopup="true" aria-expanded="false" aria-controls="langMenu" aria-label="Idioma / Language"><svg class="lang-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"></path></svg><span id="langLabel" class="notranslate" translate="no">Idioma</span></button>
+<button type="button" class="ore-btn tool-btn burger" id="menuBtn" aria-expanded="false" aria-controls="tabs" aria-label="Menú"><svg class="lang-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square"><path d="M4 6h16M4 12h16M4 18h16"></path></svg><span>Menú</span></button>
+</div>
+<div class="ore-panel dropdown lang-menu notranslate" translate="no" id="langMenu" hidden>
+<input type="text" id="langSearch" class="lang-search" placeholder="Buscar idioma..." autocomplete="off" spellcheck="false">
+<div class="lang-list" id="langList" role="listbox"></div>
+</div>
 </div></nav>
+<div id="google_translate_element"></div>
 
 <section class="view page" id="v-inicio" data-view="inicio">
 <div class="banner-wrapper reveal">
@@ -29,8 +40,8 @@
 </div>
 
 <div class="identity reveal">
-<h1 class="username">GlacierArt <svg class="badge" viewBox="0 0 24 24"><path d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.97-.81-4.01s-2.62-1.27-4.01-.81C14.67 2.53 13.43 1.65 12 1.65s-2.67.88-3.34 2.19c-1.39-.46-2.97-.2-4.01.81s-1.27 2.62-.81 4.01C2.53 9.33 1.65 10.57 1.65 12s.88 2.67 2.19 3.34c-.46 1.39-.2 2.97.81 4.01s2.62 1.27 4.01.81c.67 1.31 1.91 2.19 3.34 2.19s2.67-.88 3.34-2.19c1.39.46 2.97.2 4.01-.81s1.27-2.62.81-4.01c1.31-.67 2.19-1.91 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.26 2.26 4.8-5.23 1.47 1.36-6.2 6.77z"></path></svg></h1>
-<span class="handle">@yourboyglacier</span>
+<h1 class="username notranslate" translate="no">GlacierArt <svg class="badge" viewBox="0 0 24 24"><path d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.97-.81-4.01s-2.62-1.27-4.01-.81C14.67 2.53 13.43 1.65 12 1.65s-2.67.88-3.34 2.19c-1.39-.46-2.97-.2-4.01.81s-1.27 2.62-.81 4.01C2.53 9.33 1.65 10.57 1.65 12s.88 2.67 2.19 3.34c-.46 1.39-.2 2.97.81 4.01s2.62 1.27 4.01.81c.67 1.31 1.91 2.19 3.34 2.19s2.67-.88 3.34-2.19c1.39.46 2.97.2 4.01-.81s1.27-2.62.81-4.01c1.31-.67 2.19-1.91 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.26 2.26 4.8-5.23 1.47 1.36-6.2 6.77z"></path></svg></h1>
+<span class="handle notranslate" translate="no">@yourboyglacier</span>
 </div>
 
 <section class="ore-panel hero-card reveal">
@@ -55,17 +66,17 @@
 <section class="team-grid reveal">
 <div class="ore-panel team-card">
 <div class="ore-inset team-logo"><img src="assets/b3.png" alt="Logo de Titan Realms"></div>
-<h3>Titan Realms</h3>
+<h3 class="notranslate" translate="no">Titan Realms</h3>
 <span class="role">Owner</span>
 </div>
 <div class="ore-panel team-card">
 <div class="ore-inset team-logo"><img src="assets/b4.png" alt="Logo de SoloMC"></div>
-<h3>SoloMC</h3>
+<h3 class="notranslate" translate="no">SoloMC</h3>
 <span class="role">Sr Helper</span>
 </div>
 <div class="ore-panel team-card">
 <div class="ore-inset team-logo"><img src="assets/b2.png" alt="Logo de Valence Studios"></div>
-<h3>Valence Studios</h3>
+<h3 class="notranslate" translate="no">Valence Studios</h3>
 <span class="role">Executive+</span>
 </div>
 </section>

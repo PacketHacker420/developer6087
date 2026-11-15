@@ -298,3 +298,105 @@ window.scrollTo(0,0);
 window.addEventListener('hashchange',route);
 route();
 })();
+
+/* ---------- mobile menu + language picker ---------- */
+(function(){
+var LANGS=[["af","Afrikaans"],["sq","Albanian"],["am","Amharic"],["ar","Arabic"],["hy","Armenian"],["as","Assamese"],["ay","Aymara"],["az","Azerbaijani"],["bm","Bambara"],["eu","Basque"],["be","Belarusian"],["bn","Bengali"],["bho","Bhojpuri"],["bs","Bosnian"],["bg","Bulgarian"],["ca","Catalan"],["ceb","Cebuano"],["ny","Chichewa"],["zh-CN","Chinese (Simplified)"],["zh-TW","Chinese (Traditional)"],["co","Corsican"],["hr","Croatian"],["cs","Czech"],["da","Danish"],["dv","Dhivehi"],["doi","Dogri"],["nl","Dutch"],["en","English"],["eo","Esperanto"],["et","Estonian"],["ee","Ewe"],["tl","Filipino"],["fi","Finnish"],["fr","French"],["fy","Frisian"],["gl","Galician"],["ka","Georgian"],["de","German"],["el","Greek"],["gn","Guarani"],["gu","Gujarati"],["ht","Haitian Creole"],["ha","Hausa"],["haw","Hawaiian"],["iw","Hebrew"],["hi","Hindi"],["hmn","Hmong"],["hu","Hungarian"],["is","Icelandic"],["ig","Igbo"],["ilo","Ilocano"],["id","Indonesian"],["ga","Irish"],["it","Italian"],["ja","Japanese"],["jw","Javanese"],["kn","Kannada"],["kk","Kazakh"],["km","Khmer"],["rw","Kinyarwanda"],["gom","Konkani"],["ko","Korean"],["kri","Krio"],["ku","Kurdish (Kurmanji)"],["ckb","Kurdish (Sorani)"],["ky","Kyrgyz"],["lo","Lao"],["la","Latin"],["lv","Latvian"],["ln","Lingala"],["lt","Lithuanian"],["lg","Luganda"],["lb","Luxembourgish"],["mk","Macedonian"],["mai","Maithili"],["mg","Malagasy"],["ms","Malay"],["ml","Malayalam"],["mt","Maltese"],["mi","Maori"],["mr","Marathi"],["mni-Mtei","Meiteilon (Manipuri)"],["lus","Mizo"],["mn","Mongolian"],["my","Myanmar (Burmese)"],["ne","Nepali"],["no","Norwegian"],["or","Odia (Oriya)"],["om","Oromo"],["ps","Pashto"],["fa","Persian"],["pl","Polish"],["pt","Portuguese"],["pa","Punjabi"],["qu","Quechua"],["ro","Romanian"],["ru","Russian"],["sm","Samoan"],["sa","Sanskrit"],["gd","Scots Gaelic"],["nso","Sepedi"],["sr","Serbian"],["st","Sesotho"],["sn","Shona"],["sd","Sindhi"],["si","Sinhala"],["sk","Slovak"],["sl","Slovenian"],["so","Somali"],["es","Español (original)"],["su","Sundanese"],["sw","Swahili"],["sv","Swedish"],["tg","Tajik"],["ta","Tamil"],["tt","Tatar"],["te","Telugu"],["th","Thai"],["ti","Tigrinya"],["ts","Tsonga"],["tr","Turkish"],["tk","Turkmen"],["ak","Twi"],["uk","Ukrainian"],["ur","Urdu"],["ug","Uyghur"],["uz","Uzbek"],["vi","Vietnamese"],["cy","Welsh"],["xh","Xhosa"],["yi","Yiddish"],["yo","Yoruba"],["zu","Zulu"]];
+var SOURCE='es';
+var tabs=document.getElementById('tabs');
+var menuBtn=document.getElementById('menuBtn');
+var langBtn=document.getElementById('langBtn');
+var langMenu=document.getElementById('langMenu');
+var langList=document.getElementById('langList');
+var langSearch=document.getElementById('langSearch');
+var langLabel=document.getElementById('langLabel');
+if(!tabs||!langMenu) return;
+
+function closeMenu(){tabs.classList.remove('open');menuBtn.setAttribute('aria-expanded','false');}
+function closeLang(){langMenu.hidden=true;langBtn.setAttribute('aria-expanded','false');}
+function closeAll(){closeMenu();closeLang();}
+
+menuBtn.addEventListener('click',function(e){
+e.stopPropagation();
+var open=!tabs.classList.contains('open');
+closeLang();
+tabs.classList.toggle('open',open);
+menuBtn.setAttribute('aria-expanded',open?'true':'false');
+});
+langBtn.addEventListener('click',function(e){
+e.stopPropagation();
+var open=langMenu.hidden;
+closeMenu();
+langMenu.hidden=!open;
+langBtn.setAttribute('aria-expanded',open?'true':'false');
+if(open){langSearch.value='';render('');setTimeout(function(){langSearch.focus();},0);var a=langList.querySelector('.active');if(a)a.scrollIntoView({block:'center'});}
+});
+document.addEventListener('click',function(e){
+if(!e.target.closest('.topnav')) closeAll();
+});
+tabs.addEventListener('click',function(e){if(e.target.closest('.tab')) closeMenu();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape') closeAll();});
+window.addEventListener('hashchange',closeAll);
+
+/* ----- language ----- */
+function getCookie(n){
+var m=document.cookie.match(new RegExp('(?:^|; )'+n+'=([^;]*)'));
+return m?decodeURIComponent(m[1]):'';
+}
+function current(){
+var parts=getCookie('googtrans').split('/');
+return parts[2]||SOURCE;
+}
+function writeCookie(value,days){
+var exp=days<0?'; expires=Thu, 01 Jan 1970 00:00:00 GMT':'';
+var host=location.hostname;
+var base='googtrans='+value+exp+'; path=/';
+document.cookie=base;
+document.cookie=base+'; domain='+host;
+if(host.indexOf('.')>-1) document.cookie=base+'; domain=.'+host;
+}
+function apply(code){
+if(code===SOURCE){writeCookie('',-1);}
+else{writeCookie('/'+SOURCE+'/'+code,1);}
+location.reload();
+}
+function labelOf(code){
+for(var i=0;i<LANGS.length;i++){if(LANGS[i][0]===code) return LANGS[i][1];}
+return code;
+}
+function render(q){
+q=(q||'').trim().toLowerCase();
+var cur=current();
+langList.innerHTML='';
+var n=0;
+LANGS.forEach(function(l){
+if(q && l[1].toLowerCase().indexOf(q)<0 && l[0].toLowerCase().indexOf(q)<0) return;
+var b=document.createElement('button');
+b.type='button';
+b.className='lang-opt'+(l[0]===cur?' active':'');
+b.setAttribute('role','option');
+b.setAttribute('aria-selected',l[0]===cur?'true':'false');
+b.textContent=l[1];
+b.addEventListener('click',function(){apply(l[0]);});
+langList.appendChild(b);
+n++;
+});
+if(!n){var d=document.createElement('div');d.className='lang-empty';d.textContent='Sin resultados';langList.appendChild(d);}
+}
+langSearch.addEventListener('input',function(){render(langSearch.value);});
+
+var cur=current();
+if(langLabel){langLabel.textContent=(cur===SOURCE)?'Idioma':labelOf(cur);}
+render('');
+
+/* load Google Translate only when a language other than the original is active */
+if(cur!==SOURCE){
+window.googleTranslateElementInit=function(){
+new google.translate.TranslateElement({pageLanguage:SOURCE,autoDisplay:false},'google_translate_element');
+};
+var s=document.createElement('script');
+s.src='https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+s.async=true;
+document.head.appendChild(s);
+}
+})();
