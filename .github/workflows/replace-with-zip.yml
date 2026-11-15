@@ -3,7 +3,7 @@ name: Replace site with zip
 # Put this file at: .github/workflows/replace-with-zip.yml
 #
 # How to use:
-#   1. Upload your zip (e.g. yourboyglacier-main.zip) to the ROOT of the main branch.
+#   1. Upload your zip (e.g. yourboyglacier-site.zip) to the ROOT of the main branch.
 #   2. Either push it (this workflow runs automatically on any new .zip at the root)
 #      or go to Actions > "Replace site with zip" > Run workflow.
 #   3. The workflow deletes everything in main (except .git and .github),
@@ -15,7 +15,7 @@ on:
       zip_name:
         description: "Zip file name at the repo root (leave empty to use the first .zip found)"
         required: false
-        default: ""
+        default: "yourboyglacier-site.zip"
   push:
     branches: [main]
     paths:
