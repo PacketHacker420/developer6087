@@ -3,656 +3,83 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Elegir Plan - Minecraft</title>
+<title>Planes Minecraft · GlacierArt</title>
 <link rel="icon" type="image/png" href="../img/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/main.css">
 
-:root{
---bg:#0e1017;
---card-bg:rgba(22, 25, 35, 0.88);
---card-border:#2a2f3d;
---card-border-active:#8b5cf6;
---text:#eef1f6;
---text-dim:#9ea5b5;
---accent:#37e6b3;
---btn-bg:#232733;
-}
-
-body{
-background-color:var(--bg);
-background-image:radial-gradient(circle at 50% 30%, #1a1e2d 0%, #0e1017 70%);
-color:var(--text);
-font-family:'Fredoka',sans-serif;
-min-height:100vh;
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-padding:50px 20px;
-}
-
-.container{
-width:100%;
-max-width:1240px;
-display:flex;
-flex-direction:column;
-align-items:center;
-gap:36px;
-}
-
-.header-title-box{
-text-align:center;
-position:relative;
-display:flex;
-flex-direction:column;
-align-items:center;
-gap:12px;
-}
-
-.header-title-box h1{
-font-family:'Press Start 2P', cursive;
-font-size:26px;
-color:var(--text);
-text-transform:uppercase;
-letter-spacing:2px;
-text-shadow:0 0 20px rgba(55,230,179,0.3);
-background:linear-gradient(180deg, #ffffff 0%, #a5b4fc 100%);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-}
-
-.header-title-box p{
-color:var(--text-dim);
-font-size:15px;
-max-width:500px;
-}
-
-.cards-grid{
-display:grid;
-grid-template-columns:repeat(4, 1fr);
-gap:20px;
-width:100%;
-}
-
-.card{
-background:var(--card-bg);
-border:2px solid var(--card-border);
-border-radius:14px;
-padding:30px 20px;
-display:flex;
-flex-direction:column;
-align-items:center;
-position:relative;
-box-shadow:0 12px 30px rgba(0,0,0,0.5);
-backdrop-filter:blur(10px);
-transition:transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card::before, .card::after{
-content:'';
-position:absolute;
-width:8px;
-height:8px;
-border:2px solid var(--text-dim);
-opacity:0.5;
-}
-
-.card::before{
-top:8px;
-left:8px;
-border-right:none;
-border-bottom:none;
-}
-
-.card::after{
-bottom:8px;
-right:8px;
-border-left:none;
-border-top:none;
-}
-
-.card:hover{
-transform:translateY(-6px);
-border-color:var(--accent);
-box-shadow:0 18px 36px rgba(55,230,179,0.15);
-}
-
-.card.highlight{
-border-color:var(--card-border-active);
-background:linear-gradient(180deg, rgba(30, 27, 46, 0.95) 0%, rgba(22, 25, 35, 0.88) 100%);
-}
-
-.card.highlight:hover{
-border-color:#a78bfa;
-box-shadow:0 18px 36px rgba(139,92,246,0.25);
-}
-
-.card-icon{
-width:60px;
-height:60px;
-object-fit:contain;
-margin-bottom:18px;
-filter:drop-shadow(0 4px 8px rgba(0,0,0,0.4));
-}
-
-.card-title{
-font-family:'Press Start 2P', cursive;
-font-size:14px;
-color:var(--text);
-margin-bottom:20px;
-text-transform:uppercase;
-text-align:center;
-line-height:1.4;
-}
-
-.features-list{
-list-style:none;
-width:100%;
-display:flex;
-flex-direction:column;
-gap:14px;
-margin-bottom:28px;
-flex-grow:1;
-}
-
-.features-list li{
-display:flex;
-align-items:flex-start;
-gap:10px;
-font-size:13px;
-color:var(--text-dim);
-line-height:1.4;
-}
-
-.features-list li::before{
-content:'◆';
-color:var(--text-dim);
-font-size:10px;
-margin-top:3px;
-flex-shrink:0;
-}
-
-.card:hover .features-list li::before{
-color:var(--accent);
-}
-
-.card.highlight .features-list li::before{
-color:#a78bfa;
-}
-
-.card-footer{
-width:100%;
-display:flex;
-flex-direction:column;
-align-items:center;
-gap:14px;
-margin-top:auto;
-padding-top:16px;
-border-top:1px solid rgba(255,255,255,0.08);
-}
-
-.price-tag{
-font-size:20px;
-font-weight:700;
-color:var(--text);
-display:flex;
-align-items:baseline;
-gap:4px;
-min-height:28px;
-}
-
-.price-tag span{
-font-size:12px;
-color:var(--text-dim);
-font-weight:400;
-}
-
-.select-btn{
-width:100%;
-padding:12px;
-background:var(--btn-bg);
-border:1px solid var(--card-border);
-border-radius:10px;
-color:var(--text);
-font-family:'Fredoka',sans-serif;
-font-size:14px;
-font-weight:600;
-cursor:pointer;
-text-align:center;
-transition:background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, color 0.2s ease;
-box-shadow:0 4px 12px rgba(0,0,0,0.2);
-}
-
-.select-btn:hover{
-background:var(--accent);
-color:#0c0e13;
-border-color:var(--accent);
-transform:translateY(-2px);
-box-shadow:0 6px 16px rgba(55,230,179,0.3);
-}
-
-.card.highlight .select-btn{
-background:#3b2d54;
-border-color:#5b4580;
-}
-
-.card.highlight .select-btn:hover{
-background:#8b5cf6;
-color:#ffffff;
-border-color:#8b5cf6;
-box-shadow:0 6px 16px rgba(139,92,246,0.4);
-}
-
-.back-btn{
-margin-top:10px;
-display:inline-flex;
-align-items:center;
-gap:8px;
-color:var(--text-dim);
-text-decoration:none;
-font-size:14px;
-font-weight:500;
-transition:color 0.2s ease;
-}
-
-.back-btn:hover{
-color:var(--text);
-}
-
-.modal-overlay{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(8, 10, 15, 0.85);
-backdrop-filter:blur(8px);
-display:flex;
-align-items:center;
-justify-content:center;
-z-index:1000;
-opacity:0;
-pointer-events:none;
-transition:opacity 0.3s ease;
-padding:20px;
-}
-
-.modal-overlay.active{
-opacity:1;
-pointer-events:all;
-}
-
-.modal-card{
-background:#161922;
-border:2px solid var(--card-border);
-border-radius:18px;
-width:100%;
-max-width:460px;
-padding:32px;
-display:flex;
-flex-direction:column;
-gap:20px;
-box-shadow:0 20px 50px rgba(0,0,0,0.7);
-transform:scale(0.95);
-transition:transform 0.3s ease;
-position:relative;
-}
-
-.modal-overlay.active .modal-card{
-transform:scale(1);
-}
-
-.modal-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
-
-.modal-header h2{
-font-size:20px;
-font-weight:700;
-color:var(--text);
-}
-
-.close-btn{
-background:none;
-border:none;
-color:var(--text-dim);
-font-size:22px;
-cursor:pointer;
-transition:color 0.2s ease;
-}
-
-.close-btn:hover{
-color:var(--text);
-}
-
-.plan-info-badge{
-background:var(--bg);
-border:1px solid var(--card-border);
-border-radius:10px;
-padding:12px 16px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
-
-.plan-info-badge .name{
-font-weight:600;
-color:var(--accent);
-}
-
-.plan-info-badge .price{
-font-size:14px;
-color:var(--text-dim);
-}
-
-.modal-form{
-display:flex;
-flex-direction:column;
-gap:14px;
-}
-
-.modal-form label{
-font-size:13px;
-color:var(--text-dim);
-font-weight:500;
-}
-
-.modal-form input,
-.modal-form textarea{
-width:100%;
-background:var(--bg);
-border:1px solid var(--card-border);
-border-radius:10px;
-padding:12px 14px;
-color:var(--text);
-font-family:'Fredoka',sans-serif;
-font-size:14px;
-outline:none;
-transition:border-color 0.3s ease;
-}
-
-.modal-form input:focus,
-.modal-form textarea:focus{
-border-color:var(--accent);
-}
-
-.modal-form textarea{
-resize:vertical;
-min-height:100px;
-}
-
-.send-btn{
-padding:12px;
-background:var(--accent);
-color:#0c0e13;
-font-family:'Fredoka',sans-serif;
-font-weight:600;
-font-size:14px;
-border:none;
-border-radius:10px;
-cursor:pointer;
-transition:transform 0.2s ease, background-color 0.2s ease;
-box-shadow:0 6px 16px rgba(55,230,179,0.25);
-margin-top:6px;
-}
-
-.send-btn:hover{
-transform:translateY(-2px);
-background:#45f0bd;
-}
-
-.send-btn:disabled{
-opacity:0.6;
-cursor:not-allowed;
-transform:none;
-}
-
-.error-text{
-font-size:13px;
-color:#f87171;
-display:none;
-}
-
-.error-text.active{
-display:block;
-}
-
-.success-box{
-display:flex;
-flex-direction:column;
-align-items:center;
-text-align:center;
-gap:16px;
-padding:10px 0;
-}
-
-.success-icon-wrap{
-width:60px;
-height:60px;
-border-radius:50%;
-background:rgba(55,230,179,0.15);
-border:2px solid var(--accent);
-display:flex;
-align-items:center;
-justify-content:center;
-color:var(--accent);
-}
-
-.success-box h3{
-font-size:20px;
-color:var(--text);
-}
-
-.success-box p{
-font-size:14px;
-color:var(--text-dim);
-line-height:1.5;
-}
-
-@media (max-width:1100px){
-.cards-grid{
-grid-template-columns:repeat(2, 1fr);
-max-width:700px;
-}
-}
-
-@media (max-width:640px){
-.cards-grid{
-grid-template-columns:1fr;
-max-width:400px;
-}
-
-.header-title-box h1{
-font-size:18px;
-}
-
-.modal-card{
-padding:24px;
-}
-}
-</style>
 </head>
 <body>
-
-<div class="container">
-<div class="header-title-box">
-<h1>Elegir Plan</h1>
-<p>Selecciona la opción que mejor se adapte a tu proyecto o envía una propuesta personalizada</p>
-</div>
-
-<div class="cards-grid">
-<div class="card">
+<nav class="topnav"><div class="topnav-inner">
+<a class="brand" href=".././"><img src="../img/logo.png" alt="GlacierArt">GlacierArt</a>
+<a class="tab" href=".././">Inicio</a>
+<a class="tab" href="../team.html">Team</a>
+<a class="tab" href="../servicios.html">Servicios</a>
+<a class="tab" href="../tecnologias.html">Tecnologías</a>
+<a class="tab" href="../wp/plan.html">Planes Web</a>
+<a class="tab active" href="../mc/planes.html">Planes MC</a>
+<a class="tab" href="../contacto.html">Contacto</a>
+</div></nav>
+<main class="page wide">
+<div class="reveal" style="text-align:center"><h1 class="section-title">Elegir Plan</h1><p class="lead">Selecciona la opción que mejor se adapte a tu proyecto o envía una propuesta personalizada</p></div>
+<section class="cards-grid reveal"><div class="ore-panel card">
 <img src="../img/icons/ic6.png" alt="Icono Plan Basico" class="card-icon">
 <h2 class="card-title">Plan Basico</h2>
-<ul class="features-list">
-<li>Configuración básica de comandos y estructuras iniciales.</li>
-<li>Optimización para proyectos pequeños o iniciales.</li>
-<li>Soporte técnico directo vía Discord.</li>
-</ul>
-<div class="card-footer">
-<div class="price-tag">$5.00 <span>/ proyecto</span></div>
-<button class="select-btn" onclick="openRequestModal('Plan Basico', '$5.00 / proyecto')">Elegir Plan</button>
-</div>
-</div>
-
-<div class="card highlight">
+<ul class="features-list"><li>Configuración básica de comandos y estructuras iniciales.</li><li>Optimización para proyectos pequeños o iniciales.</li><li>Soporte técnico directo vía Discord.</li></ul>
+<div class="card-footer"><div class="price-tag">$5.00 <span>/ proyecto</span></div>
+<button class="ore-btn block" onclick="openRequestModal('Plan Basico', '$5.00 / proyecto')">Elegir Plan</button></div>
+</div><div class="ore-panel card highlight">
 <img src="../img/icons/ic7.png" alt="Icono Plan Pro" class="card-icon">
 <h2 class="card-title">Plan Pro</h2>
-<ul class="features-list">
-<li>Sistemas de comandos avanzados y mecánicas personalizadas.</li>
-<li>Construcciones Mejor elaboradas y ambientación de mapas.</li>
-<li>Integración de Add-Ons Personalizados (1 Complemento).</li>
-<li>Revisiones y ajustes ilimitados durante el desarrollo.</li>
-</ul>
-<div class="card-footer">
-<div class="price-tag">$15.00 <span>/ proyecto</span></div>
-<button class="select-btn" onclick="openRequestModal('Plan Pro', '$15.00 / proyecto')">Elegir Plan</button>
-</div>
-</div>
-
-<div class="card">
+<ul class="features-list"><li>Sistemas de comandos avanzados y mecánicas personalizadas.</li><li>Construcciones mejor elaboradas y ambientación de mapas.</li><li>Integración de Add-Ons personalizados (1 complemento).</li><li>Revisiones y ajustes ilimitados durante el desarrollo.</li></ul>
+<div class="card-footer"><div class="price-tag">$15.00 <span>/ proyecto</span></div>
+<button class="ore-btn block" onclick="openRequestModal('Plan Pro', '$15.00 / proyecto')">Elegir Plan</button></div>
+</div><div class="ore-panel card">
 <img src="../img/icons/ic8.png" alt="Icono Plan Deluxe" class="card-icon">
 <h2 class="card-title">Plan Deluxe</h2>
-<ul class="features-list">
-<li>Desarrollo completo con construcciones.</li>
-<li>Implementación de Comandos personalizados y Add-Ons.</li>
-<li>Optimización máxima de rendimiento sin lag.</li>
-<li>Soporte prioritario y mantenimiento continuo.</li>
-</ul>
-<div class="card-footer">
-<div class="price-tag">$30.00 <span>/ proyecto</span></div>
-<button class="select-btn" onclick="openRequestModal('Plan Deluxe', '$30.00 / proyecto')">Elegir Plan</button>
-</div>
-</div>
-
-<div class="card">
+<ul class="features-list"><li>Desarrollo completo con construcciones.</li><li>Implementación de comandos personalizados y Add-Ons.</li><li>Optimización máxima de rendimiento sin lag.</li><li>Soporte prioritario y mantenimiento continuo.</li></ul>
+<div class="card-footer"><div class="price-tag">$30.00 <span>/ proyecto</span></div>
+<button class="ore-btn block" onclick="openRequestModal('Plan Deluxe', '$30.00 / proyecto')">Elegir Plan</button></div>
+</div><div class="ore-panel card">
 <img src="../img/icons/ic9.png" alt="Icono Propuesta" class="card-icon">
 <h2 class="card-title">Propuesta</h2>
-<ul class="features-list">
-<li>Colaboración mutua para proyectos en desarrollo.</li>
-<li>Ideas creativas compartidas y reparto de roles.</li>
-<li>Integración a largo plazo como parte del equipo.</li>
-<li>Discusión abierta de términos según la propuesta.</li>
-</ul>
-<div class="card-footer">
-<div class="price-tag"><span>Sin precio fijo</span></div>
-<button class="select-btn" onclick="openRequestModal('Propuesta', 'Colaboración')">Elegir Plan</button>
-</div>
-</div>
-</div>
-
-<a href="../" class="back-btn">← Volver al Inicio</a>
-</div>
+<ul class="features-list"><li>Colaboración mutua para proyectos en desarrollo.</li><li>Ideas creativas compartidas y reparto de roles.</li><li>Integración a largo plazo como parte del equipo.</li><li>Discusión abierta de términos según la propuesta.</li></ul>
+<div class="card-footer"><div class="price-tag"><span>Sin precio fijo</span></div>
+<button class="ore-btn block" onclick="openRequestModal('Propuesta', 'Colaboración')">Elegir Plan</button></div>
+</div></section>
+<div class="back-row"><a href="../" class="ore-btn gray">← Volver al Inicio</a></div>
+</main>
 
 <div class="modal-overlay" id="requestModal">
-<div class="modal-card">
-<div class="modal-header">
-<h2>Realizar Solicitud</h2>
-<button class="close-btn" onclick="closeModal('requestModal')">&times;</button>
-</div>
-<div class="plan-info-badge">
-<span class="name" id="modalPlanName">Plan</span>
-<span class="price" id="modalPlanPrice">Precio</span>
-</div>
-<form action="https://formsubmit.co/ajax/caelustry@gmail.com" method="POST" class="modal-form" onsubmit="handleFormSubmit(event)" id="requestForm">
-<input type="hidden" name="_subject" id="emailSubject" value="Nueva Solicitud de Plan">
+<div class="ore-panel modal-card">
+<div class="modal-header"><h2>Realizar Solicitud</h2><button class="close-btn" onclick="closeModal('requestModal')">&times;</button></div>
+<div class="ore-inset plan-info-badge"><span class="name" id="modalPlanName">Plan</span><span class="price" id="modalPlanPrice">Precio</span></div>
+<form action="https://formsubmit.co/ajax/TU_CORREO@gmail.com" method="POST" class="modal-form" onsubmit="handleFormSubmit(event)" id="requestForm" data-subject="Nueva Solicitud">
+<input type="hidden" name="_subject" id="emailSubject" value="Nueva Solicitud">
 <input type="hidden" name="Plan Seleccionado" id="hiddenPlanName">
 <input type="hidden" name="Precio / Tipo" id="hiddenPlanPrice">
-<div>
-<label for="userEmail">Tu Gmail</label>
-<input type="email" id="userEmail" name="email" placeholder="ejemplo@gmail.com" required>
-</div>
-<div>
-<label for="userDescription">Descripción de lo que vas a solicitar</label>
-<textarea id="userDescription" name="mensaje" placeholder="Escribe aquí los detalles del proyecto o de tu propuesta..." required></textarea>
-</div>
+<div><label for="userEmail">Tu Gmail</label><input type="email" id="userEmail" name="email" placeholder="ejemplo@gmail.com" required></div>
+<div><label for="userDescription">Descripción de lo que vas a solicitar</label><textarea id="userDescription" name="mensaje" placeholder="Escribe aquí los detalles de tu proyecto o propuesta..." required></textarea></div>
 <p class="error-text" id="formError">Hubo un problema al enviar tu solicitud. Intenta de nuevo en unos segundos.</p>
-<button type="submit" class="send-btn" id="submitBtn">Enviar Solicitud</button>
+<button type="submit" class="ore-btn block" id="submitBtn">Enviar Solicitud</button>
 </form>
 </div>
 </div>
 
 <div class="modal-overlay" id="successModal">
-<div class="modal-card">
-<div class="success-box">
-<div class="success-icon-wrap">
-<svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-</div>
+<div class="ore-panel modal-card"><div class="success-box">
+<div class="success-icon-wrap"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
 <h3>¡Solicitud Enviada!</h3>
-<p>Tu mensaje ha sido enviado correctamente. Ten en cuenta que puedo tardar en responder en un plazo de varios días según la carga de trabajo.</p>
-<button class="send-btn" style="width:100%;" onclick="closeModal('successModal')">Entendido</button>
+<p>Tu mensaje ha sido enviado correctamente. Ten en cuenta que puedo tardar varios días en responder según la carga de trabajo.</p>
+<button class="ore-btn block" onclick="closeModal('successModal')">Entendido</button>
+</div></div>
 </div>
-</div>
-</div>
-
-<script>
-let currentPlan = '';
-let currentPrice = '';
-
-function openRequestModal(planName, planPrice){
-currentPlan = planName;
-currentPrice = planPrice;
-
-document.getElementById('modalPlanName').innerText = planName;
-document.getElementById('modalPlanPrice').innerText = planPrice;
-document.getElementById('hiddenPlanName').value = planName;
-document.getElementById('hiddenPlanPrice').value = planPrice;
-document.getElementById('emailSubject').value = 'Nueva Solicitud: ' + planName + ' - DinzaDV';
-document.getElementById('formError').classList.remove('active');
-
-document.getElementById('requestModal').classList.add('active');
-}
-
-function closeModal(modalId){
-document.getElementById(modalId).classList.remove('active');
-}
-
-function handleFormSubmit(event){
-event.preventDefault();
-const form = event.target;
-const formData = new FormData(form);
-const submitBtn = document.getElementById('submitBtn');
-const errorText = document.getElementById('formError');
-
-errorText.classList.remove('active');
-submitBtn.disabled = true;
-submitBtn.innerText = 'Enviando...';
-
-fetch(form.action, {
-method: 'POST',
-body: formData,
-headers: {
-'Accept': 'application/json'
-}
-}).then(response => {
-if(!response.ok){
-throw new Error('Respuesta no valida del servidor: ' + response.status);
-}
-return response.json();
-}).then(data => {
-submitBtn.disabled = false;
-submitBtn.innerText = 'Enviar Solicitud';
-closeModal('requestModal');
-form.reset();
-document.getElementById('successModal').classList.add('active');
-}).catch(error => {
-console.error('Error al enviar el formulario:', error);
-submitBtn.disabled = false;
-submitBtn.innerText = 'Enviar Solicitud';
-errorText.classList.add('active');
-});
-}
-</script>
-
+<footer class="site-footer">
+<p>&copy; 2026 GlacierArt &middot; yourboyglacier</p>
+</footer>
+<script src="../js/plans.js"></script>
+<script src="../js/main.js"></script>
 </body>
 </html>

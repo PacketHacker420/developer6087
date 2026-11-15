@@ -14,7 +14,7 @@ revealItems.forEach(function(item){
 revealObserver.observe(item);
 });
 
-initMinecraftModel();
+if(typeof THREE!=='undefined'){initMinecraftModel();}
 
 });
 
